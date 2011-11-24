@@ -6,12 +6,12 @@ EAPI=4
 
 inherit webapp depend.php
 
-DESCRIPTION="Contao is an open source content management system (CMS) for people who want a professional internet presence that is easy to maintain."
+DESCRIPTION="Contao is an open source content management system (CMS) that is easy to maintain."
 HOMEPAGE="http://www.contao.org/"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
-LICENSE="LGPL"
-KEYWORDS="~x86"
+LICENSE="LGPL-3"
+KEYWORDS="~x86 ~amd64"
 IUSE=""
 
 need_php_httpd
@@ -24,11 +24,11 @@ src_install () {
 	webapp_src_preinst
 
 	dodoc INSTALL.txt CHANGELOG.txt
-	
+
 	# 2.10.3 comes with left over session files
 	ebegin Removing session files that came with the distribution
 	for file in system/tmp/*
-	do 
+	do
 		einfo "${file}"
 		rm "${file}"
 	done
