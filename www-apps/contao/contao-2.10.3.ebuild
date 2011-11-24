@@ -46,5 +46,8 @@ src_install () {
 		webapp_serverowned "${MY_HTDOCSDIR}"/system/${dir}
 	done
 
+	webapp_serverowned "${MY_HTDOCSDIR}"/templates
+	webapp_serverowned "${MY_HTDOCSDIR}"/tl_files
+
 	webapp_src_install
 }
