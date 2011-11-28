@@ -17,7 +17,11 @@ IUSE=""
 need_php_httpd
 
 DEPEND=""
-RDEPEND=">=dev-lang/php-5.2[gd,soap,mysql,zlib,xml]
+RDEPEND="
+|| ( 
+	>=dev-lang/php-5.2[gd,soap,mysql,zlib,xml]
+	>=dev-lang/php-5.2[gd-external,soap,mysql,zlib,xml]
+	)
 >=virtual/mysql-4.1"
 
 src_install () {
