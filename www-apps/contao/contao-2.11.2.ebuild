@@ -27,7 +27,7 @@ RDEPEND="
 src_install () {
 	webapp_src_preinst
 
-	dodoc INSTALL.txt CHANGELOG.txt
+	dodoc README.md
 
 	# 2.10.3 comes with left over session files
 	ebegin Removing session files that came with the distribution
@@ -41,8 +41,11 @@ src_install () {
 	insinto "${MY_HTDOCSDIR}"
 	doins -r .
 
+	touch "${D}/${MY_HTDOCSDIR}"/system/config/localconfig.php
 	webapp_configfile "${MY_HTDOCSDIR}"/system/config/localconfig.php
 	webapp_serverowned "${MY_HTDOCSDIR}"/system/config/localconfig.php
+	webapp_configfile "${MY_HTDOCSDIR}"/system/config/config.php
+	webapp_serverowned "${MY_HTDOCSDIR}"/system/config/config.php
 
 	local dir
 	for dir in config logs tmp html scripts
