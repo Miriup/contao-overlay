@@ -24,6 +24,8 @@ RDEPEND="
 	)
 >=virtual/mysql-4.1"
 
+S=${WORKDIR}/core-${PV}
+
 src_install () {
 	webapp_src_preinst
 
