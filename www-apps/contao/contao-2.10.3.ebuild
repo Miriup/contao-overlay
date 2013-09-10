@@ -8,7 +8,7 @@ inherit webapp depend.php
 
 DESCRIPTION="Contao is an open source content management system (CMS) that is easy to maintain."
 HOMEPAGE="http://www.contao.org/"
-SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
+SRC_URI="https://github.com/${PN}/core/archive/${PV}.tar.gz"
 
 LICENSE="LGPL-3"
 KEYWORDS="~x86 ~amd64"
