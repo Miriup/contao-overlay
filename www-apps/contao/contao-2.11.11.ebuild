@@ -54,15 +54,16 @@ src_install () {
 	touch "${D}/${MY_HTDOCSDIR}"/system/config/localconfig.php
 	webapp_configfile "${MY_HTDOCSDIR}"/system/config/localconfig.php
 	webapp_serverowned "${MY_HTDOCSDIR}"/system/config/localconfig.php
-	webapp_configfile "${MY_HTDOCSDIR}"/system/config/config.php
-	webapp_serverowned "${MY_HTDOCSDIR}"/system/config/config.php
+	#webapp_configfile "${MY_HTDOCSDIR}"/system/config/config.php
+	#webapp_serverowned "${MY_HTDOCSDIR}"/system/config/config.php
 
 	local dir
-	for dir in config logs tmp html scripts
+	for dir in config logs tmp html scripts modules drivers
 	do
 		webapp_serverowned "${MY_HTDOCSDIR}"/system/${dir}
 	done
 
+	webapp_serverowned "${MY_HTDOCSDIR}"/plugins
 	webapp_serverowned "${MY_HTDOCSDIR}"/templates
 	webapp_serverowned "${MY_HTDOCSDIR}"/tl_files
 
