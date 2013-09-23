@@ -58,14 +58,23 @@ src_install () {
 	#webapp_serverowned "${MY_HTDOCSDIR}"/system/config/config.php
 	# This is needed so that the safe-mode hack doesn't kick in:
 	webapp_serverowned "${MY_HTDOCSDIR}"/system/config/default.php
+	webapp_configfile "${MY_HTDOCSDIR}"/system/config/default.php
 
 	local dir
-	for dir in config logs tmp modules
+	for dir in bin cache config logs tmp modules themes tmp
 	do
 		webapp_serverowned "${MY_HTDOCSDIR}"/system/${dir}
 	done
 
+	webapp_serverowned "${MY_HTDOCSDIR}"/files
 	webapp_serverowned "${MY_HTDOCSDIR}"/templates
+
+	webapp_serverowned "${MY_HTDOCSDIR}"/assets
+	webapp_serverowned "${MY_HTDOCSDIR}"/assets/js
+	webapp_serverowned "${MY_HTDOCSDIR}"/assets/css
+	webapp_serverowned "${MY_HTDOCSDIR}"/assets/css/basic.css
+	webapp_configfile "${MY_HTDOCSDIR}"/assets/css/basic.css
+	webapp_serverowned "${MY_HTDOCSDIR}"/assets/fonts
 
 	webapp_src_install
 }
