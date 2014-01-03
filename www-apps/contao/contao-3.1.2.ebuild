@@ -21,8 +21,8 @@ need_php_httpd
 DEPEND=""
 RDEPEND="
 || ( 
-	>=dev-lang/php-5.2[gd,soap,mysql,zlib,xml]
-	>=dev-lang/php-5.2[gd-external,soap,mysql,zlib,xml]
+	>=dev-lang/php-5.2[gd,soap,mysqli,zlib,xml]
+	>=dev-lang/php-5.2[gd-external,soap,mysqli,zlib,xml]
 	)
 >=virtual/mysql-4.1"
 
@@ -61,12 +61,13 @@ src_install () {
 	webapp_configfile "${MY_HTDOCSDIR}"/system/config/default.php
 
 	local dir
-	for dir in bin cache config logs tmp modules themes tmp
+	for dir in bin cache config logs modules themes tmp
 	do
 		webapp_serverowned "${MY_HTDOCSDIR}"/system/${dir}
 	done
 
 	webapp_serverowned "${MY_HTDOCSDIR}"/files
+	webapp_serverowned "${MY_HTDOCSDIR}"/files/music_academy
 	webapp_serverowned "${MY_HTDOCSDIR}"/templates
 
 	webapp_serverowned "${MY_HTDOCSDIR}"/assets
@@ -75,6 +76,7 @@ src_install () {
 	webapp_serverowned "${MY_HTDOCSDIR}"/assets/css/basic.css
 	webapp_configfile "${MY_HTDOCSDIR}"/assets/css/basic.css
 	webapp_serverowned "${MY_HTDOCSDIR}"/assets/fonts
+	webapp_serverowned "${MY_HTDOCSDIR}"/assets/images/*
 
 	webapp_src_install
 }
