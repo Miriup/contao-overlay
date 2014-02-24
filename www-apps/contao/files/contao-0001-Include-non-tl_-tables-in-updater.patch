@@ -1,0 +1,49 @@
+From e06c340984202393791e1ae2b59b209eb6beb72d Mon Sep 17 00:00:00 2001
+From: Dirk Tilger <dirk@systemication.com>
+Date: Wed, 25 Sep 2013 14:27:47 +0000
+Subject: [PATCH 1/2] Include non tl_* tables in updater
+
+Without this any extensions that attempts to create database tables
+without the leading tl_ prefix will not be able to update these tables
+later.
+
+This change allows the modification (but not deletion) of tables that
+are defined through DCA.
+---
+ system/modules/core/library/Contao/Database/Installer.php | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
+
+diff --git a/system/modules/core/library/Contao/Database/Installer.php b/system/modules/core/library/Contao/Database/Installer.php
+index 3e89c4c..07e20fd 100644
+--- a/system/modules/core/library/Contao/Database/Installer.php
++++ b/system/modules/core/library/Contao/Database/Installer.php
+@@ -113,8 +113,8 @@ class Installer extends \Controller
+ 		$create = array();
+ 		$return = array();
+ 
+-		$sql_current = $this->getFromDb();
+ 		$sql_target = $this->getFromDca();
++		$sql_current = $this->getFromDb( $sql_target );
+ 		$sql_legacy = $this->getFromFile();
+ 
+ 		// Manually merge the legacy definitions (see #4766)
+@@ -419,10 +419,14 @@ class Installer extends \Controller
+ 	 *
+ 	 * @return array An array of tables and fields
+ 	 */
+-	public function getFromDb()
++	public function getFromDb(array $dca_tables = NULL)
+ 	{
+ 		$this->import('Database');
+-		$tables = preg_grep('/^tl_/', $this->Database->listTables(null, true));
++		$existing_tables = $this->Database->listTables(null, true);
++		$tables = array_merge(
++			preg_grep('/^tl_/',$existing_tables),
++			array_intersect(array_keys($dca_tables),$existing_tables)
++		);
+ 
+ 		if (empty($tables))
+ 		{
+-- 
+1.8.3.2
+
