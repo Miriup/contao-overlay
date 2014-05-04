@@ -1,0 +1,8 @@
+dev-lang/php soap
+#required by www-apps/contao-2.11.2, required by contao (argument)
+dev-lang/php gd mysqli
+# required by dev-lang/php-5.4.17
+# required by php:5.4 (argument)
+app-admin/eselect-php apache2
+
+
