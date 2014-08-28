@@ -1,2 +1,5 @@
 #required by contao (argument)
 www-apps/contao **
+# Contao 3.3 requires:
+# required by dev-php/composer (argument)
+=dev-php/composer-1.0.0_alpha8
