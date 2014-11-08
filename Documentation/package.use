@@ -4,6 +4,7 @@ dev-lang/php gd mysqli
 # required by dev-lang/php-5.4.17
 # required by php:5.4 (argument)
 app-admin/eselect-php apache2
+dev-lang/php apache2
 
 # required by dev-php/composer-1.0.0_alpha8::jamiel-gentoo-overlay
 # required by dev-php/composer (argument)
